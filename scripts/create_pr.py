@@ -1,0 +1,69 @@
+import github3
+
+try:
+    # Python 2
+    prompt = raw_input
+except NameError:
+    # Python 3
+    prompt = input
+
+repos = [
+    "Apps",
+    "Apps-Server",
+    "App-Service",
+    "Backend-Service",
+    "Backend-Conversions",
+    "tradeshift-company-profile",
+    "tradeshift-product-engine",
+    "Frontend",
+    "Supplier-Management",
+    "Tradeshift-Proxy2",
+    "Workflow",
+    "p2p-apps",
+]
+
+token = token_id = username = password = ''
+
+
+def my_two_factor_function():
+    code = ''
+    while not code:
+        code = prompt('Enter 2FA code: ')
+    return code
+
+
+# with open('token', 'r') as fd:
+#     token = fd.readline().strip()  # Can't hurt to be paranoid
+#     token_id = fd.readline().strip()
+
+with open('user', 'r') as fd:
+    username = fd.readline().strip()  # Can't hurt to be paranoid
+    password = fd.readline().strip()
+
+gh = github3.login(username, password, two_factor_callback=my_two_factor_function)
+
+
+# auth = gh.authorization(token_id)
+# auth.update(add_scopes=['repo:status', 'gist'], rm_scopes=['user'])
+
+
+def create_pull_request(repo_name):
+    print '[%s]creating pull request' % repo_name
+    try:
+        repository = gh.repository('TradeshiftCN', repo_name)
+        repository.create_pull(
+            title='sync 07 31',
+            base='dev',
+            head='TradeshiftCN:sync_07_31',
+            body='@Chris-Xie \
+                 @yhl10000 ',
+        )
+    except Exception, e:
+        print '[%s]create failed' % repo_name
+        print '     ' + str(e)
+    else:
+        print '[%s]creating pull request successful!' % repo_name
+
+
+for repo_name in repos:
+    create_pull_request(repo_name)

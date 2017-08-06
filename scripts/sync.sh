@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-cd ..
+cd ../tradeshift-puppet
 
 # repos need to be sync
 repos=( "Apps:tradeshift_v4_apps_server"
@@ -11,7 +11,6 @@ repos=( "Apps:tradeshift_v4_apps_server"
         "Frontend:frontend"
         "tradeshift-product-engine:product_engine"
         "Supplier-Management:supplier_management"
-        "tradeshift-company-profile:company_profile"
         "Tradeshift-Proxy2:tradeshift_proxy"
         "Workflow:workflow"
         "p2p-apps:p2p_apps")
