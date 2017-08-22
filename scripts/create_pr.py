@@ -13,10 +13,8 @@ repos = [
     "App-Service",
     "Backend-Service",
     "Backend-Conversions",
-    "tradeshift-company-profile",
     "tradeshift-product-engine",
     "Frontend",
-    "Supplier-Management",
     "Tradeshift-Proxy2",
     "Workflow",
     "p2p-apps",
@@ -52,17 +50,17 @@ def create_pull_request(repo_name):
     try:
         repository = gh.repository('TradeshiftCN', repo_name)
         repository.create_pull(
-            title='sync 07 31',
+            title='sync 08 21',
             base='dev',
-            head='TradeshiftCN:sync_07_31',
+            head='TradeshiftCN:sync_08_21',
             body='@Chris-Xie \
                  @yhl10000 ',
         )
     except Exception, e:
-        print '[%s]create failed' % repo_name
+        print '[%s]create pull request failed!' % repo_name
         print '     ' + str(e)
     else:
-        print '[%s]creating pull request successful!' % repo_name
+        print '[%s]create pull request successful!' % repo_name
 
 
 for repo_name in repos:
