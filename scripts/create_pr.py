@@ -12,7 +12,6 @@ repos = [
     "Apps-Server",
     "App-Service",
     "Backend-Service",
-    "Backend-Conversions",
     "tradeshift-product-engine",
     "Frontend",
     "Tradeshift-Proxy2",
