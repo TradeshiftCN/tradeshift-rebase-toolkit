@@ -79,7 +79,7 @@ do
         git reset --hard v${version} || git reset --hard ${version}
     fi
 
-    git push -u
+    git push -uf
 
     echo "[$KEY] Git branch ts-master sync success."
 done
