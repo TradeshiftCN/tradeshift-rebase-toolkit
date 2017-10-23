@@ -9,7 +9,6 @@ except NameError:
 
 repos = [
     "Apps",
-    "Apps-Server",
     "App-Service",
     "Backend-Service",
     "tradeshift-product-engine",
@@ -49,9 +48,9 @@ def create_pull_request(repo_name):
     try:
         repository = gh.repository('TradeshiftCN', repo_name)
         repository.create_pull(
-            title='sync 09 11',
+            title='sync 10 01',
             base='dev',
-            head='TradeshiftCN:sync_09_11',
+            head='TradeshiftCN:sync_10_01',
             body='@Chris-Xie \
                  @yhl10000 ',
         )

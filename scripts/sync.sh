@@ -3,8 +3,7 @@
 cd ../tradeshift-puppet
 
 # repos need to be sync
-repos=( "Apps:tradeshift_v4_apps_server"
-        "Apps-Server:apps_server"
+repos=( "Apps:tradeshift_v4_apps"
         "App-Service:tradeshift_app_backend"
         "Backend-Service:tradeshift_backend"
         "tradeshift-company-profile:company_profile"
