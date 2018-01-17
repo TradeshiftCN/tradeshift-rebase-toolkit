@@ -48,9 +48,9 @@ def create_pull_request(repo_name):
     try:
         repository = gh.repository('TradeshiftCN', repo_name)
         repository.create_pull(
-            title='sync 10 01',
+            title='sync 12 25',
             base='dev',
-            head='TradeshiftCN:sync_10_01',
+            head='TradeshiftCN:sync_12_25',
             body='@Chris-Xie \
                  @yhl10000 ',
         )
