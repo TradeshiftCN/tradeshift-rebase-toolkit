@@ -114,13 +114,13 @@ do
     echo "${green}[$KEY] Merging origin/feature-valeo.${reset}"
     git fetch origin
     git merge origin/feature-valeo  --no-commit \
-        && report="$report${green}[$KEY]No merge conflict.${reset}\n" \
-        || report="$report${red}[$KEY]Merge conflict need to be resolved!${reset}\n"
+        && report="$report${green}[$KEY] Automatic merge went well; commit the result manually.${reset}\n" \
+        || report="$report${red}[$KEY] Automatic merge failed; fix conflicts and then commit the result.${reset}\n"
 
 done
 
-echo "*************REBASE REPORT****************"
-echo -e ${report}
 echo ""
-echo "${green}Auto rebase finished, Please resolve all the conflict and execute git commit manually.${reset}"
+echo "${green}*************REBASE REPORT****************${reset}"
+echo -e ${report}
+echo "${green}Auto rebase finished, Please resolve all the conflict and commit manually.${reset}"
 }
