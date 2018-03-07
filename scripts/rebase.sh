@@ -111,9 +111,9 @@ do
     git co -b rebase_$(date +%Y_%m_%d)
 
     # merge rebase branch
-    echo "${green}[$KEY] Merging origin/feature-valeo.${reset}"
+    echo "${green}[$KEY] Merging origin/sync_18_02_05.${reset}"
     git fetch origin
-    git merge origin/feature-valeo  --no-commit \
+    git merge origin/sync_18_02_05 --no-commit \
         && report="$report${green}[$KEY] Automatic merge went well; commit the result manually.${reset}\n" \
         || report="$report${red}[$KEY] Automatic merge failed; fix conflicts and then commit the result.${reset}\n"
 

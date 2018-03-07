@@ -24,7 +24,7 @@
 brew install pip
 
 # install shyaml
-pip install shyaml
+sudo pip install shyaml
 ``` 
 
 2. Execute below commands to auto rebase.
@@ -56,7 +56,7 @@ and rebuild docker image by [jenkins job](http://t.jenkins.bwtsi.cn:8080/view/re
 
 3. Don't try to resolve conflict in `package-lock.json`, just accept Tradeshift version and use below commands to regenerate a new one.
 ```
-cat package-lock.json | sed -e "s/npm.tradeshift.net/cn.npm.bwtsi.cn/g" | tee package-lock.json
+sed -i '' 's/npm.tradeshift.net/cn.npm.bwtsi.cn/g' package-lock.json
 npm install
 ```
 
