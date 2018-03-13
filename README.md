@@ -19,7 +19,7 @@
 2. Make sure all project has no uncommited changes.
 
 2. Install related dependency.
-```
+```bash
 # install pip
 brew install pip
 
@@ -28,7 +28,7 @@ sudo pip install shyaml
 ``` 
 
 2. Execute below commands to auto rebase.
-```
+```bash
 cd tradeshift-rebase-toolkit
 sh ./scripts/rebase.sh
 ```
@@ -55,15 +55,23 @@ we need to rebase it with [this commit](https://github.com/TradeshiftCN/tradeshi
 and rebuild docker image by [jenkins job](http://t.jenkins.bwtsi.cn:8080/view/release/job/tradeshift-docker-node-release/)
 
 3. Don't try to resolve conflict in `package-lock.json`, just accept Tradeshift version and use below commands to regenerate a new one.
-```
+```bash
 sed -i '' 's/npm.tradeshift.net/cn.npm.bwtsi.cn/g' package-lock.json
 npm install
 ```
 
-4. Announce everyone to use node version defined in `.nvmrc` and npm version defined in `jenkins.sh`.
+4. Inform everyone to use specific version of node defined in `.nvmrc` and npm defined in `jenkins.sh`.
 
 ### Backend-Service
 1. Check `ubl.version` defined in `pom.xml`, follow Frontend step 1.
+
+### Product-engine
+1. Search all ImageStorageService bean, add `@Qualifier("qiniu")` annotation like below. 
+```java
+    @Autowired
+    @Qualifier("qiniu")
+    private final ImageStorageService imageStorageService;
+```
 
 ## create rebase pull request
 
