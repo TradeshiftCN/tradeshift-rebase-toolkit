@@ -24,24 +24,33 @@ verify_directory_structure() {
     for i in "${repos[@]}"
     do
         :
-        KEY="${i%%:*}"
-        VALUE="${i##*:}"
-        if [ ! -e "../$KEY" ]
+        COMPONENT="${i%%:*}"
+        if [ ! -e "../$COMPONENT" ]
         then
-            echo "${red}[$KEY] Directory missing!${reset}"
-            echo "${red}[$KEY] Exiting...${reset}"
+            echo "${red}[$COMPONENT] Directory missing!${reset}"
+            echo "${red}[$COMPONENT] Exiting...${reset}"
             exit 1;
         fi
     done
     echo "${green}Verify directory structure successful.${reset}"
 }
 
-create_upstream() {
-    if ! git remote | grep upstream >> /dev/null
+reset_remote() {
+    if git remote | grep $1 >> /dev/null
     then
-        echo "${green}[$1] Git adding upstream.${reset}"
-        git remote add upstream git@github.com:Tradeshift/$1.git
+        git remote remove $1
     fi
+    git remote add $1 $2
+}
+
+reset_remote_upstream() {
+    echo "${green}[$1] Git reseting upstream.${reset}"
+    reset_remote upstream git@github.com:Tradeshift/$1.git
+}
+
+reset_remote_origin() {
+    echo "${green}[$1] Git reseting origin.${reset}"
+    reset_remote origin git@github.com:TradeshiftCN/$1.git
 }
 
 is_branch_exsiting() {
@@ -62,7 +71,9 @@ fetch_upstream() {
 }
 
 # fetch latest puppet
-create_upstream tradeshift-puppet
+reset_remote_origin tradeshift-puppet
+reset_remote_upstream tradeshift-puppet
+echo "${green}[tradeshift-puppet] Fetching latest...${reset}"
 git fetch upstream
 git checkout upstream/production
 
@@ -73,50 +84,51 @@ verify_directory_structure
 { for i in "${repos[@]}"
 do
     :
-    KEY="${i%%:*}"
-    VALUE="${i##*:}"
+    COMPONENT="${i%%:*}"
+    COMPONENT_NAME="${i##*:}"
 
     # goto working directory
-    echo "${green}[$KEY] Rebasing...${reset}"
-    cd ../${KEY}
+    echo "${green}[$COMPONENT] Rebasing...${reset}"
+    cd ../${COMPONENT}
 
-    # create_upstream
-    create_upstream ${KEY}
+    # reset_remote_upstream
+    reset_remote_origin ${COMPONENT}
+    reset_remote_upstream ${COMPONENT}
 
     # fetch from upstream
-    echo "${green}[$KEY] Git upstream fetching...${reset}"
+    echo "${green}[$COMPONENT] Git upstream fetching...${reset}"
     fetch_upstream
-    echo "${green}[$KEY] Git fetch successful.${reset}"
+    echo "${green}[$COMPONENT] Git fetch successful.${reset}"
 
     # checkout based on puppet version
-    version=`cat ../tradeshift-puppet/hiera/versions.yaml | shyaml get-value tradeshift::components::${VALUE}::version`
-    type=`cat ../tradeshift-puppet/hiera/versions.yaml | shyaml get-type tradeshift::components::${VALUE}::version`
+    version=`cat ../tradeshift-puppet/hiera/versions.yaml | shyaml get-value tradeshift::components::${COMPONENT_NAME}::version`
+    type=`cat ../tradeshift-puppet/hiera/versions.yaml | shyaml get-type tradeshift::components::${COMPONENT_NAME}::version`
 
     if [ -n "`is_commit_or_tag_exsiting v${version}`" ]; then
-        echo "${green}[$KEY]git checkout v${version}${reset}"
+        echo "${green}[$COMPONENT]git checkout v${version}${reset}"
         git checkout v${version}
     elif [ -n "`is_commit_or_tag_exsiting ${version}`" ]; then
-        echo "${green}[$KEY]git checkout ${version}${reset}"
+        echo "${green}[$COMPONENT]git checkout ${version}${reset}"
         git checkout ${version}
     else
-        echo "${red}[$KEY] Git commit ${version} missing!${reset}"
-        echo "${red}[$KEY] Exiting...${reset}"
+        echo "${red}[$COMPONENT] Git commit ${version} missing!${reset}"
+        echo "${red}[$COMPONENT] Exiting...${reset}"
         exit 1
     fi
 
     # create rebase branch
-    echo "${green}[$KEY] Create rebase branch rebase_$(date +%Y_%m_%d)...${reset}"
+    echo "${green}[$COMPONENT] Create rebase branch rebase_$(date +%Y_%m_%d)...${reset}"
     if [ -n "`is_branch_exsiting rebase_$(date +%Y_%m_%d)`" ]; then
         git branch -D rebase_$(date +%Y_%m_%d)
     fi
     git co -b rebase_$(date +%Y_%m_%d)
 
     # merge rebase branch
-    echo "${green}[$KEY] Merging origin/sync_18_02_05.${reset}"
+    echo "${green}[$COMPONENT] Merging origin/dev-stable.${reset}"
     git fetch origin
-    git merge origin/sync_18_02_05 --no-commit \
-        && report="$report${green}[$KEY] Automatic merge went well; commit the result manually.${reset}\n" \
-        || report="$report${red}[$KEY] Automatic merge failed; fix conflicts and then commit the result.${reset}\n"
+    git merge origin/dev-stable --no-commit \
+        && report="$report${green}[$COMPONENT] Automatic merge went well; commit the result manually.${reset}\n" \
+        || report="$report${red}[$COMPONENT] Automatic merge failed; fix conflicts and then commit the result.${reset}\n"
 
 done
 
