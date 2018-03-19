@@ -63,6 +63,7 @@ fetch_upstream() {
 
 # fetch latest puppet
 create_upstream tradeshift-puppet
+git fetch upstream
 git checkout upstream/production
 
 
