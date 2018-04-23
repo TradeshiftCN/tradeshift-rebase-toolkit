@@ -75,3 +75,7 @@ npm install
 
 ## create rebase pull request
 
+## Rebase Relation
+
+![Image of Relation](https://raw.githubusercontent.com/TradeshiftCN/tradeshift-rebase-toolkit/master/chart/Rebase%20relation.png)
+
