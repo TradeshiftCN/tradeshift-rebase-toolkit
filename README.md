@@ -47,7 +47,8 @@ If changed, release this new chrome version to ali cdn by [jenkins job](https://
 ### Apps
 1. Check if `tradeshift-ui` in `package.json` is updated.
 If changed, first, release the version to ali cdn by the [jenkins job](https://cn.ci.bwtsi.cn/job/CB-Tradeshift-UI-Manual-Release/configure)
-second, update puppet like this [pull request](https://github.com/TradeshiftCN/tradeshift-puppet/pull/680/files)
+second, update ui version in `config.json`, this will be used in dev environment.
+third, update puppet like this [pull request](https://github.com/TradeshiftCN/tradeshift-puppet/pull/680/files), this will overwrite `config.json` from puppet deployment.
 
 2. Check the base image in `docker/Dockerfile`, currently it should be tradeshift-docker-node:onbuild,
 if the dockerfile in [tradeshift-docker-node](https://github.com/Tradeshift/tradeshift-docker-node/) repo is updated,
