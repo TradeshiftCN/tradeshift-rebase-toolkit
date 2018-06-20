@@ -1,6 +1,6 @@
 # code rebase toolkit for Tradeshift
 
-## rebase
+## How to rebase
 1. Make sure your directory structure looks like below example.
 ```
 ├── App-Service
@@ -18,7 +18,7 @@
 
 2. Make sure all project has no uncommited changes.
 
-2. Install related dependency.
+3. Install related dependency.
 ```bash
 # install pip
 brew install pip
@@ -27,15 +27,29 @@ brew install pip
 sudo pip install shyaml
 ``` 
 
-2. Execute below commands to auto rebase.
+4. Execute below commands to auto merge `Tradeshift/*/master` with `Tradeshift/*/dev-stable`.
 ```bash
 cd tradeshift-rebase-toolkit
 sh ./scripts/rebase.sh
 ```
 
-3. Resolve merge conflicts and execute `git commit` for every project(don't use `git commit -m xxx`)
+5. Resolve all the conflicts, commit and push.
 
-## Key point
+6. create pull request.
+```bash
+cd tradeshift-rebase-toolkit
+python ./scripts/create_pr.py
+```
+
+## Something you have to know
+
+1. Important! Resolve merge conflicts and execute `git commit` for every project(don't use `git commit -m xxx`)
+
+2. Very important! you have to commit `apps` merge result with `git commit --no-verify`, otherwise a git hook would format all the code with `git commit`.
+
+3. Very very important! Do not squash commits or use `squash and merge` from github. we need the commit logs.
+
+## Something you may need to know
 
 ### Frontend
 1. Check if `com.tradeshift:tradeshift-ubl` defined in `grails-app/conf/BuildConfig.groovy` is changed, since we have china specific change.
@@ -74,9 +88,7 @@ npm install
     private final ImageStorageService imageStorageService;
 ```
 
-## create rebase pull request
-
-## Rebase Relation
+## Reference
 
 ![Image of Relation](https://raw.githubusercontent.com/TradeshiftCN/tradeshift-rebase-toolkit/master/chart/Rebase%20relation.png)
 
