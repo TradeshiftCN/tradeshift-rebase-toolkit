@@ -52,8 +52,8 @@ python ./scripts/create_pr.py
 ## Something you may need to know
 
 ### Frontend
-1. ~~Check if `com.tradeshift:tradeshift-ubl` defined in `grails-app/conf/BuildConfig.groovy` is changed, since we have china specific change.
-If changed, rebase and release a new ubl jar package by the [jenkins job](https://cn.ci.bwtsi.cn/job/CB-Backend-Ubl-Manual-Release/)~~
+1. Check if `com.tradeshift:tradeshift-ubl` defined in `grails-app/conf/BuildConfig.groovy` is changed, since we have china specific change.
+If changed, rebase and release a new ubl jar package by the [jenkins job](https://cn.ci.bwtsi.cn/job/CB-Backend-Ubl-Manual-Release/)
 
 2. Before new chrome goes live officially, find the chrome version defined in [tradeshift-puppet](https://github.com/Tradeshift/tradeshift-puppet/blob/testing/hiera/versions.yaml#L19) and run the [jenkins job](https://cn.ci.bwtsi.cn/job/tradeshift-chrome-release/) to release it to CDN. But remember to reset latest version to 8.0.9. (If you don't know how to do it, please talk to Chris)
 
