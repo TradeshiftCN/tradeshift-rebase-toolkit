@@ -8,7 +8,6 @@
 ├── Backend-Service
 ├── Frontend
 ├── Tradeshift-Proxy2
-├── tradeshift-company-profile
 ├── tradeshift-product-engine
 ├── Workflow
 ├── p2p-apps
