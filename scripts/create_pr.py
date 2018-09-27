@@ -16,6 +16,7 @@ repos = [
     "App-Service",
     "Backend-Service",
     "tradeshift-product-engine",
+    "tradeshift-company-profile",
     "Frontend",
     "Tradeshift-Proxy2",
     "Workflow",
