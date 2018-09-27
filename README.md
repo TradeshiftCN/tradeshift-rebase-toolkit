@@ -9,6 +9,7 @@
 ├── Frontend
 ├── Tradeshift-Proxy2
 ├── tradeshift-product-engine
+├── tradeshift-company-profile
 ├── Workflow
 ├── p2p-apps
 ├── tradeshift-puppet
