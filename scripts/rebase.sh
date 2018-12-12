@@ -15,7 +15,8 @@ repos=( "Apps:tradeshift_v4_apps"
         "tradeshift-product-engine:product_engine"
         "Tradeshift-Proxy2:tradeshift_proxy"
         "Workflow:workflow"
-        "p2p-apps:p2p_apps")
+        "p2p-apps:p2p_apps"
+        "orgs:orgs_service")
 
 report=""
 
@@ -117,11 +118,11 @@ do
     fi
 
     # create rebase branch
-    echo "${green}[$COMPONENT] Create rebase branch rebase_$(date +%Y_%m_%d)...${reset}"
-    if [ -n "`is_branch_exsiting rebase_$(date +%Y_%m_%d)`" ]; then
-        git branch -D rebase_$(date +%Y_%m_%d)
+    echo "${green}[$COMPONENT] Create rebase branch rebase-$(date +%Y-%m-%d)...${reset}"
+    if [ -n "`is_branch_exsiting rebase-$(date +%Y-%m-%d)`" ]; then
+        git branch -D rebase-$(date +%Y-%m-%d)
     fi
-    git co -b rebase_$(date +%Y_%m_%d)
+    git co -b rebase-$(date +%Y-%m-%d)
 
     # merge rebase branch
     echo "${green}[$COMPONENT] Merging origin/dev-stable.${reset}"
