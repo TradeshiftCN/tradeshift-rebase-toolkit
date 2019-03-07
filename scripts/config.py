@@ -37,7 +37,7 @@ logging.basicConfig(level=logging.INFO,
 WORKING_DIR = os.path.expanduser('~/TradeshiftCN/rebase/')
 
 PUPPET_BASELINE_TAG = 'production-6265'
-REBASE_BRANCH_NAME = 'rebase-2019-01-02'
+REBASE_BRANCH_NAME = 'rebase-2019-03-04'
 
 PUPPET_REPO = {
     'origin': {
@@ -53,18 +53,18 @@ PUPPET_REPO = {
 }
 
 HERACLE_REPOS = {
-    'App-Service': {
-        'hiera-name': 'tradeshift_app_backend',
-        'origin': {
-            'org': 'TradeshiftCN',
-            'repo_name': 'App-Service',
-            'branch': 'dev-stable'
-        },
-        'upstream': {
-            'org': 'Tradeshift',
-            'repo_name': 'App-Service',
-        }
-    },
+    # 'App-Service': {
+    #     'hiera-name': 'tradeshift_app_backend',
+    #     'origin': {
+    #         'org': 'TradeshiftCN',
+    #         'repo_name': 'App-Service',
+    #         'branch': 'dev-stable'
+    #     },
+    #     'upstream': {
+    #         'org': 'Tradeshift',
+    #         'repo_name': 'App-Service',
+    #     }
+    # },
     'Apps': {
         'hiera-name': 'tradeshift_v4_apps',
         'origin': {
@@ -77,18 +77,18 @@ HERACLE_REPOS = {
             'repo_name': 'Apps',
         }
     },
-    'Backend-Service': {
-        'hiera-name': 'tradeshift_backend',
-        'origin': {
-            'org': 'TradeshiftCN',
-            'repo_name': 'Backend-Service',
-            'branch': 'dev-stable'
-        },
-        'upstream': {
-            'org': 'Tradeshift',
-            'repo_name': 'Backend-Service',
-        }
-    },
+    # 'Backend-Service': {
+    #     'hiera-name': 'tradeshift_backend',
+    #     'origin': {
+    #         'org': 'TradeshiftCN',
+    #         'repo_name': 'Backend-Service',
+    #         'branch': 'dev-stable'
+    #     },
+    #     'upstream': {
+    #         'org': 'Tradeshift',
+    #         'repo_name': 'Backend-Service',
+    #     }
+    # },
     'Frontend': {
         'hiera-name': 'frontend',
         'origin': {
@@ -101,18 +101,18 @@ HERACLE_REPOS = {
             'repo_name': 'Frontend',
         }
     },
-    'Tradeshift-Proxy2': {
-        'hiera-name': 'tradeshift_proxy',
-        'origin': {
-            'org': 'TradeshiftCN',
-            'repo_name': 'Tradeshift-Proxy2',
-            'branch': 'dev-stable'
-        },
-        'upstream': {
-            'org': 'Tradeshift',
-            'repo_name': 'Tradeshift-Proxy2',
-        }
-    },
+    # 'Tradeshift-Proxy2': {
+    #     'hiera-name': 'tradeshift_proxy',
+    #     'origin': {
+    #         'org': 'TradeshiftCN',
+    #         'repo_name': 'Tradeshift-Proxy2',
+    #         'branch': 'dev-stable'
+    #     },
+    #     'upstream': {
+    #         'org': 'Tradeshift',
+    #         'repo_name': 'Tradeshift-Proxy2',
+    #     }
+    # },
     'tradeshift-product-engine': {
         'hiera-name': 'product_engine',
         'origin': {

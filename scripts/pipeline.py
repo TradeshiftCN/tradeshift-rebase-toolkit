@@ -189,26 +189,26 @@ with open(remote_puppet_version_file_path, 'r') as version_file:
         LOGGER.error(exc)
         exit(-1)
 
-# Heracle
-# heracle_dir = os.path.join(config.WORKING_DIR, 'heracle')
-# for config_name, repo_config in config.HERACLE_REPOS.items():
-#     ghrepo = GitHubRepo(heracle_dir, config_name, repo_config['origin']['org'],
-#                         repo_config['origin']['repo_name'])
-#
-#     ghrepo.clone()
-#     if not ghrepo.is_dirty():
-#         ghrepo.add_remote(
-#             remote_url=f'git@github.com:{repo_config["upstream"]["org"]}/{repo_config["upstream"]["repo_name"]}.git',
-#             remote_name='upstream')
-#         ghrepo.fetch('upstream')
-#         hiera_version_key = f"tradeshift::components::{repo_config['hiera-name']}::version"
-#         if hiera_version_key in version_data:
-#             commit_or_tag = version_data[hiera_version_key]
-#             ghrepo.checkout_new_branch(commit_or_tag, config.REBASE_BRANCH_NAME)
-#             # target_branch = ghrepo.checkout(repo_config['origin']['branch'])
-#             ghrepo.merge_without_commit(f"origin/{repo_config['origin']['branch']}")
-#         else:
-#             LOGGER.error(f'version.yaml has no version of {config_name}')
+#Heracle
+heracle_dir = os.path.join(config.WORKING_DIR, 'heracle')
+for config_name, repo_config in config.HERACLE_REPOS.items():
+    ghrepo = GitHubRepo(heracle_dir, config_name, repo_config['origin']['org'],
+                        repo_config['origin']['repo_name'])
+
+    ghrepo.clone()
+    if not ghrepo.is_dirty():
+        ghrepo.add_remote(
+            remote_url=f'git@github.com:{repo_config["upstream"]["org"]}/{repo_config["upstream"]["repo_name"]}.git',
+            remote_name='upstream')
+        ghrepo.fetch('upstream')
+        hiera_version_key = f"tradeshift::components::{repo_config['hiera-name']}::version"
+        if hiera_version_key in version_data:
+            commit_or_tag = version_data[hiera_version_key]
+            ghrepo.checkout_new_branch(commit_or_tag, config.REBASE_BRANCH_NAME)
+            # target_branch = ghrepo.checkout(repo_config['origin']['branch'])
+            ghrepo.merge_without_commit(f"origin/{repo_config['origin']['branch']}")
+        else:
+            LOGGER.error(f'version.yaml has no version of {config_name}')
 
 # K8s
 
