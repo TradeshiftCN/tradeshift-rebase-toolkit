@@ -53,18 +53,18 @@ PUPPET_REPO = {
 }
 
 HERACLE_REPOS = {
-    # 'App-Service': {
-    #     'hiera-name': 'tradeshift_app_backend',
-    #     'origin': {
-    #         'org': 'TradeshiftCN',
-    #         'repo_name': 'App-Service',
-    #         'branch': 'dev-stable'
-    #     },
-    #     'upstream': {
-    #         'org': 'Tradeshift',
-    #         'repo_name': 'App-Service',
-    #     }
-    # },
+    'App-Service': {
+        'hiera-name': 'tradeshift_app_backend',
+        'origin': {
+            'org': 'TradeshiftCN',
+            'repo_name': 'App-Service',
+            'branch': 'dev-stable'
+        },
+        'upstream': {
+            'org': 'Tradeshift',
+            'repo_name': 'App-Service',
+        }
+    },
     'Apps': {
         'hiera-name': 'tradeshift_v4_apps',
         'origin': {
@@ -77,18 +77,18 @@ HERACLE_REPOS = {
             'repo_name': 'Apps',
         }
     },
-    # 'Backend-Service': {
-    #     'hiera-name': 'tradeshift_backend',
-    #     'origin': {
-    #         'org': 'TradeshiftCN',
-    #         'repo_name': 'Backend-Service',
-    #         'branch': 'dev-stable'
-    #     },
-    #     'upstream': {
-    #         'org': 'Tradeshift',
-    #         'repo_name': 'Backend-Service',
-    #     }
-    # },
+    'Backend-Service': {
+        'hiera-name': 'tradeshift_backend',
+        'origin': {
+            'org': 'TradeshiftCN',
+            'repo_name': 'Backend-Service',
+            'branch': 'dev-stable'
+        },
+        'upstream': {
+            'org': 'Tradeshift',
+            'repo_name': 'Backend-Service',
+        }
+    },
     'Frontend': {
         'hiera-name': 'frontend',
         'origin': {
@@ -101,18 +101,18 @@ HERACLE_REPOS = {
             'repo_name': 'Frontend',
         }
     },
-    # 'Tradeshift-Proxy2': {
-    #     'hiera-name': 'tradeshift_proxy',
-    #     'origin': {
-    #         'org': 'TradeshiftCN',
-    #         'repo_name': 'Tradeshift-Proxy2',
-    #         'branch': 'dev-stable'
-    #     },
-    #     'upstream': {
-    #         'org': 'Tradeshift',
-    #         'repo_name': 'Tradeshift-Proxy2',
-    #     }
-    # },
+    'Tradeshift-Proxy2': {
+        'hiera-name': 'tradeshift_proxy',
+        'origin': {
+            'org': 'TradeshiftCN',
+            'repo_name': 'Tradeshift-Proxy2',
+            'branch': 'dev-stable'
+        },
+        'upstream': {
+            'org': 'Tradeshift',
+            'repo_name': 'Tradeshift-Proxy2',
+        }
+    },
     'tradeshift-product-engine': {
         'hiera-name': 'product_engine',
         'origin': {
@@ -124,7 +124,8 @@ HERACLE_REPOS = {
             'org': 'Tradeshift',
             'repo_name': 'tradeshift-product-engine',
         }
-    },
+    }
+    ,
     'business-analytics': {
         'hiera-name': 'business_analytics',
         'origin': {
@@ -211,7 +212,8 @@ K8S_REPOS = {
             'repo_name': 'orgs',
             'branch': 'master'
         }
-    },
+    }
+    ,
     'companies-onboarding': {
         'origin': {
             'org': 'TradeshiftCN',
@@ -233,6 +235,21 @@ K8S_REPOS = {
         'upstream': {
             'org': 'Tradeshift',
             'repo_name': 'event-app-handler',
+            'branch': 'master'
+        }
+    }
+}
+
+IT_REPOS = {
+    'Integration-Test': {
+        'origin': {
+            'org': 'TradeshiftCN',
+            'repo_name': 'Integration-Test',
+            'branch': 'dev-stable'
+        },
+        'upstream': {
+            'org': 'Tradeshift',
+            'repo_name': 'Integration-Test',
             'branch': 'master'
         }
     }

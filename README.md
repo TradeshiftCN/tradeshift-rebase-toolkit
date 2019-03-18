@@ -1,44 +1,22 @@
 # code rebase toolkit for Tradeshift
 
-## How to use code rebase toolkit
-1. Make sure your directory structure looks like below example.
-```
-├── App-Service
-├── Apps
-├── Backend-Service
-├── Frontend
-├── Tradeshift-Proxy2
-├── tradeshift-product-engine
-├── tradeshift-company-profile
-├── Workflow
-├── p2p-apps
-├── orgs
-├── tradeshift-puppet
-├── tradeshift-rebase-toolkit
-```
+# 运行
 
-2. Make sure all project has no uncommited changes.
+## 安装Miniconda
 
-3. Install related dependency.
+下载 [Miniconda](https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda-latest-MacOSX-x86_64.sh)
+
 ```bash
-# install pip
-brew install pip
-
-# install shyaml
-sudo pip install shyaml
-``` 
-
-4. Execute below commands to auto merge `Tradeshift/*/master` with `Tradeshift/*/dev-stable`.
-```bash
-cd tradeshift-rebase-toolkit
-sh ./scripts/rebase.sh
+cd 下载 miniconda 的目录
+bash Miniconda-latest-MacOSX-x86_64.sh
+cd 到当前目录
+conda env create -f env.yaml
+conda activate rebase-toolkit
 ```
 
-## How to create mutiple pull requests automatically
+修改scripts/config.py
 
-1. create pull request.
+运行
 ```bash
-cd tradeshift-rebase-toolkit
-python ./scripts/create_pr.py
+python pileline.py
 ```
-
