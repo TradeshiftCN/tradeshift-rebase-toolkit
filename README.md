@@ -20,9 +20,10 @@ pip3 install pyyaml coloredlogs tqdm GitPython
 
 # 运行
 ```bash
-cp scripts/config-template.py scripts/config.py
+cd scripts
+cp config-template.py config.py # 首次运行时需要
 ```
-修改 `scripts/config.py`，将其中的 `'change this'` 全部替换为合适的值。
+修改 `config.py`，将其中的 `'change this'` 全部替换为合适的值。
 ```bash
-python pileline.py
+python3 pipeline.py
 ```
