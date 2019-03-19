@@ -18,6 +18,21 @@ from git import Repo, NoSuchPathError, GitCommandError, RemoteProgress, BadName
 from tqdm import tqdm
 
 
+class TqdmHandler(logging.StreamHandler):
+    def __init__(self):
+        logging.StreamHandler.__init__(self)
+
+    def emit(self, record):
+        try:
+            msg = self.format(record)
+            tqdm.write(msg)
+            self.flush()
+        except (KeyboardInterrupt, SystemExit):
+            raise
+        except:
+            self.handleError(record)
+
+
 class Progress(RemoteProgress):
     pbar_dict = dict()
     last_pbar = None
@@ -76,11 +91,11 @@ class GitHubRepo:
     def get_head_commit_datetime(self):
         return self.repo.head.commit.committed_datetime
 
-    def get_latest_commit_before(self, destination, datetime):
+    def get_latest_merge_commit_before(self, destination, datetime):
         max_deepth = 5000
         cur_deepth = 50
         while cur_deepth < max_deepth:
-            for commit in self.repo.iter_commits(destination, max_count=cur_deepth):
+            for commit in self.repo.iter_commits(destination, max_count=cur_deepth, merges=True):
                 if commit.committed_datetime < datetime:
                     return commit
             cur_deepth = cur_deepth + 50

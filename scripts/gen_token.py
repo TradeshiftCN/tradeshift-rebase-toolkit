@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-
+# Deprecated
 from getpass import getuser, getpass
 
 from github3 import authorize

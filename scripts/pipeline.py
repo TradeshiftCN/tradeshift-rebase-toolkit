@@ -68,7 +68,7 @@ def clone_and_merge_timed(workdir, repo_configs, lastest_before):
                 remote_name='upstream')
             ghrepo.fetch('upstream')
             latest_commit_before_hiera = \
-                ghrepo.get_latest_commit_before(f'upstream/{repo_config["upstream"]["branch"]}', lastest_before)
+                ghrepo.get_latest_merge_commit_before(f'upstream/{repo_config["upstream"]["branch"]}', lastest_before)
             if latest_commit_before_hiera is not None:
                 ghrepo.checkout_new_branch(latest_commit_before_hiera.hexsha, config.REBASE_BRANCH_NAME)
                 # target_branch = ghrepo.checkout(repo_config['origin']['branch'])

@@ -1,4 +1,5 @@
 #!/bin/bash -e
+# Deprecated
 
 cd ../tradeshift-puppet
 
