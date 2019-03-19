@@ -34,10 +34,13 @@ logging.basicConfig(level=logging.INFO,
 
 # =========================== Modify Following ===========================
 
-WORKING_DIR = os.path.expanduser('~/TradeshiftCN/rebase/')
+# Example: os.path.expanduser('~/TradeshiftCN/rebase/')
+WORKING_DIR = 'change this'
 
-PUPPET_BASELINE_TAG = 'production-6265'
-REBASE_BRANCH_NAME = 'rebase-2019-03-04'
+# Example: 'procution-6265'
+PUPPET_BASELINE_TAG = 'change this'
+# Example: 'rebase-2019-03-04'
+REBASE_BRANCH_NAME = 'change this'
 
 PUPPET_REPO = {
     'origin': {

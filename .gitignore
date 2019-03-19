@@ -102,4 +102,8 @@ ENV/
 
 user
 
+# Intellij IDEA
 .idea
+
+# Personal configuration
+scripts/config.py
