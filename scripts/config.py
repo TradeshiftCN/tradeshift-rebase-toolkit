@@ -2,25 +2,8 @@ import logging
 import os
 
 from coloredlogs import ColoredFormatter
-from tqdm import tqdm
 
-
-class TqdmHandler(logging.StreamHandler):
-    def __init__(self):
-        logging.StreamHandler.__init__(self)
-
-    def emit(self, record):
-        try:
-            msg = self.format(record)
-            tqdm.write(msg)
-            self.flush()
-        except (KeyboardInterrupt, SystemExit):
-            raise
-        except:
-            self.handleError(record)
-
-        # coloredlogs.install()
-
+from utils import TqdmHandler
 
 LOGFORMAT = '%(name)s - %(levelname)s - %(message)s'
 formatter = ColoredFormatter(LOGFORMAT)
@@ -36,8 +19,8 @@ logging.basicConfig(level=logging.INFO,
 
 WORKING_DIR = os.path.expanduser('~/TradeshiftCN/rebase/')
 
-PUPPET_BASELINE_TAG = 'production-6265'
-REBASE_BRANCH_NAME = 'rebase-2019-03-04'
+PUPPET_BASELINE_TAG = 'production-6524'
+REBASE_BRANCH_NAME = 'rebase-2019-03-18'
 
 PUPPET_REPO = {
     'origin': {
