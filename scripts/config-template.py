@@ -197,8 +197,7 @@ K8S_REPOS = {
             'repo_name': 'orgs',
             'branch': 'master'
         }
-    }
-    ,
+    },
     'companies-onboarding': {
         'origin': {
             'org': 'TradeshiftCN',
@@ -220,6 +219,18 @@ K8S_REPOS = {
         'upstream': {
             'org': 'Tradeshift',
             'repo_name': 'event-app-handler',
+            'branch': 'master'
+        }
+    },
+    'common-ui-apps': {
+        'origin': {
+            'org': 'TradeshiftCN',
+            'repo_name': 'common-ui-apps',
+            'branch': 'dev-stable'
+        },
+        'upstream': {
+            'org': 'Tradeshift',
+            'repo_name': 'common-ui-apps',
             'branch': 'master'
         }
     }

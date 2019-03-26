@@ -22,7 +22,7 @@ def parse_puppet_for_heracle(workdir, puppet_repo_config, baseline_tag):
     version_dict = dict()
     with open(puppet_version_file_path, 'r') as version_file:
         try:
-            version_dict = yaml.load(version_file)
+            version_dict = yaml.safe_load(version_file)
         except yaml.YAMLError as exc:
             LOGGER.error(exc)
             raise exc
