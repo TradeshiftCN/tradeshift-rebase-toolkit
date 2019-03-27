@@ -78,12 +78,18 @@ class Progress(RemoteProgress):
 class GitHubRepo:
     LOGGER = logging.getLogger('GitHubRepo')
 
-    def __init__(self, work_dir, dir_name, org_name, repo_name):
+    def __init__(self, work_dir, dir_name, org_name, repo_name, ):
         self.work_dir = work_dir
         self.dir_name = dir_name
         self.org_name = org_name
         self.repo_name = repo_name
-        self.repo = None
+        try:
+            self.repo = Repo(os.path.join(self.work_dir, self.dir_name))
+        except NoSuchPathError as err:
+            self.LOGGER.info(f'{org_name}/{repo_name} not exist, creating...')
+            self.repo = Repo.init(path=os.path.join(self.work_dir, self.dir_name))
+            self.add_remote(remote_url=f'git@github.com:{self.org_name}/{self.repo_name}.git',
+                            remote_name='origin')
 
     def is_dirty(self):
         return self.repo.is_dirty()
@@ -100,6 +106,13 @@ class GitHubRepo:
                     return commit
             cur_deepth = cur_deepth + 50
         return None
+
+    def checkout_tag(self, dest: str, tag_name: str):
+        tag_ref = next((tag for tag in self.repo.tags if tag.commit == self.repo.head.commit), None)
+        if tag_ref is not None and tag_ref.name == tag_name:
+            self.LOGGER.warning(f"{tag_name} exists in {self.org_name}/{self.repo_name} , skip cloning.")
+        else:
+            self.fetch(dest, tag_name)
 
     def clone_tag(self, tag_name):
         try:
@@ -122,30 +135,32 @@ class GitHubRepo:
 
     def checkout(self, branch_name):
         self.repo.git.checkout(branch_name)
-        return self.repo.active_branch
+        if self.repo.head.is_detached:
+            return next((tag for tag in self.repo.tags if tag.commit == self.repo.head.commit),
+                        self.repo.head.commit.hexsha)
+        else:
+            return self.repo.active_branch
 
-    def checkout_new_branch(self, base, new_branch_name):
+    def checkout_new_branch(self, base_commit_or_tag, new_branch_name):
         checkout_name = None
         tags = self.repo.tags
-        commit = None
         try:
-            commit = self.repo.commit(base)
+            commit = self.repo.commit(base_commit_or_tag)
+            if commit:
+                checkout_name = base_commit_or_tag
         except BadName as err:
             # base is not a commit hash
-            commit = None
-        expected_tag_name = f'v{base}'
-        if commit is not None:
-            checkout_name = base
-        else:
-            tag = list(filter(lambda tag: tag.name == f'v{base}', tags))
+            expected_tag_name = f'v{base_commit_or_tag}'
+            tag = list(filter(lambda tag: tag.name == expected_tag_name, tags))
             if len(tag) == 1:
                 checkout_name = expected_tag_name
+
         if checkout_name is not None:
             self.repo.git.checkout(checkout_name)
             self.repo.create_head(new_branch_name)
             self.repo.git.checkout(new_branch_name)
         else:
-            raise Exception(f'{base} not exist in {self.org_name}/{self.repo_name}')
+            raise Exception(f'{base_commit_or_tag} not exist in {self.org_name}/{self.repo_name}')
 
     def merge_without_commit(self, new_branch):
         try:
@@ -189,9 +204,13 @@ class GitHubRepo:
         else:
             self.LOGGER.error(f'{self.org_name}/{self.repo_name} is not cloned yet.')
 
-    def fetch(self, dest):
-        if self.repo:
-            self.repo.remotes[dest].fetch(progress=Progress())
-            self.LOGGER.info(f'{self.org_name}/{self.repo_name}:{dest} is fetched.')
+    def fetch(self, dest: str, depth: int = None, branch_name: str = None, tag: str = None):
+        if branch_name:
+            ref_spec = branch_name
         else:
-            self.LOGGER.error(f'{self.org_name}/{self.repo_name} is not cloned yet.')
+            ref_spec = f'+refs/tags/{tag}:refs/tags/{tag}' if tag else None
+        if depth:
+            self.repo.remotes[dest].fetch(refspec=ref_spec, depth=depth, progress=Progress())
+        else:
+            self.repo.remotes[dest].fetch(refspec=ref_spec, progress=Progress())
+        self.LOGGER.info(f'{self.org_name}/{self.repo_name}:{dest} is fetched.')

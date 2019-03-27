@@ -1,7 +1,7 @@
 import logging
-import os
 
 from coloredlogs import ColoredFormatter
+
 from utils import TqdmHandler
 
 LOGFORMAT = '%(name)s - %(levelname)s - %(message)s'
@@ -219,6 +219,18 @@ K8S_REPOS = {
         'upstream': {
             'org': 'Tradeshift',
             'repo_name': 'event-app-handler',
+            'branch': 'master'
+        }
+    },
+    'tradeshift-clamav': {
+        'origin': {
+            'org': 'TradeshiftCN',
+            'repo_name': 'tradeshift-clamav',
+            'branch': 'dev-stable'
+        },
+        'upstream': {
+            'org': 'Tradeshift',
+            'repo_name': 'tradeshift-clamav',
             'branch': 'master'
         }
     },
