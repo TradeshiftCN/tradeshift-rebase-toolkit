@@ -16,7 +16,7 @@ Sub-task,,1,rebase clamav,bane.shi,huy,Medium,Open,Migrate TradeshiftCN to Trade
 Sub-task,,1,rebase event-app-handler,lil,huy,Medium,Open,Migrate TradeshiftCN to Tradeshift,CPA-8,1
 Sub-task,,1,rebase orgs,bane.shi,huy,Medium,Open,Migrate TradeshiftCN to Tradeshift,CPA-8,1
 Sub-task,,1,rebase companies-onboarding,lry,huy,Medium,Open,Migrate TradeshiftCN to Tradeshift,CPA-8,1
-Sub-task,,1,rebase common-ui-apps,bane.shi,huy,Medium,Open,Migrate TradeshiftCN to Tradeshift,CPA-8,1
+Sub-task,,1,rebase common-ui-apps,lry,huy,Medium,Open,Migrate TradeshiftCN to Tradeshift,CPA-8,1
 Sub-task,,1,rebase Integration-Test,lry,huy,Medium,Open,Migrate TradeshiftCN to Tradeshift,CPA-8,1
 Task,2,,Rebase Tradeshift for the 2nd week,huy,huy,Medium,Open,Migrate TradeshiftCN to Tradeshift,CPA-7,13
 Sub-task,,2,rebase Backend-Service,huy,huy,Medium,Open,Migrate TradeshiftCN to Tradeshift,CPA-8,1
@@ -35,5 +35,5 @@ Sub-task,,2,rebase clamav,bane.shi,huy,Medium,Open,Migrate TradeshiftCN to Trade
 Sub-task,,2,rebase event-app-handler,lil,huy,Medium,Open,Migrate TradeshiftCN to Tradeshift,CPA-8,1
 Sub-task,,2,rebase orgs,bane.shi,huy,Medium,Open,Migrate TradeshiftCN to Tradeshift,CPA-8,1
 Sub-task,,2,rebase companies-onboarding,lry,huy,Medium,Open,Migrate TradeshiftCN to Tradeshift,CPA-8,1
-Sub-task,,2,rebase common-ui-apps,bane.shi,huy,Medium,Open,Migrate TradeshiftCN to Tradeshift,CPA-8,1
+Sub-task,,2,rebase common-ui-apps,lry,huy,Medium,Open,Migrate TradeshiftCN to Tradeshift,CPA-8,1
 Sub-task,,2,rebase Integration-Test,lry,huy,Medium,Open,Migrate TradeshiftCN to Tradeshift,CPA-8,1
