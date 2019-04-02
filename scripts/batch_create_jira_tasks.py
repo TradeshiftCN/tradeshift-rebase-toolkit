@@ -11,8 +11,8 @@
 import pandas as pd
 from jira import JIRA
 
-API_TOKEN = 'changethis'
-TASK_FILE_PATH = 'location of rabase-tasks.csv'
+API_TOKEN = 'waHAud0CGc6teFs1d10x63FD'
+TASK_FILE_PATH = '/Users/HuYao/TradeshiftCN/rebase/tradeshift-rebase-toolkit/scripts/rabase-tasks.csv'
 
 options = {'server': 'https://tradeshift.atlassian.net'}
 jira = JIRA(options, basic_auth=('huy@tradeshift.com', API_TOKEN))
@@ -49,11 +49,11 @@ for idx, parent_task in parent_tasks.iterrows():
                                      ],
                                      assignee={'name': parent_task_dict['Assignee']},
                                      reporter={'name': parent_task_dict['Reporter']},
-                                     priority={'name': parent_task_dict['Priority']},
-                                     customfield_10008=parent_task_dict['Custom field (Story Points)']
+                                     priority={'name': parent_task_dict['Priority']}
+                                     #customfield_10008=parent_task_dict['Custom field (Story Points)']
                                      )
-    parent_issue.update(customfield_10008=parent_task_dict['Custom field (Story Points)'])
-    print(f'{parent_issue.name} is created')
+    #parent_issue.update(customfield_10008=parent_task_dict['Custom field (Story Points)'])
+    print(f'{parent_issue.key} is created')
     for idx, sub_task in subtask_data[subtask_data['Parent id'] == local_parent_id].iterrows():
         sub_task_dict = sub_task.to_dict()
         sub_issue = jira.create_issue(project={'key': 'CPA'},
@@ -68,7 +68,7 @@ for idx, parent_task in parent_tasks.iterrows():
                                       ],
                                       assignee={'name': sub_task_dict['Assignee']},
                                       reporter={'name': sub_task_dict['Reporter']},
-                                      priority={'name': sub_task_dict['Priority']},
-                                      customfield_10008=parent_task_dict['Custom field (Story Points)']
+                                      priority={'name': sub_task_dict['Priority']}
+                                      #customfield_10008=parent_task_dict['Custom field (Story Points)']
                                       )
-        print(f'{sub_issue.name} is created')
+        print(f'{sub_issue.key} is created')
