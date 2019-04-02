@@ -109,8 +109,7 @@ HERACLE_REPOS = {
             'org': 'Tradeshift',
             'repo_name': 'tradeshift-product-engine',
         }
-    }
-    ,
+    },
     'business-analytics': {
         'hiera-name': 'business_analytics',
         'origin': {

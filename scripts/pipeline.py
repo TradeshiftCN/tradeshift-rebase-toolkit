@@ -60,7 +60,7 @@ def clone_and_merge_versioned(workdir, repo_configs, version_dict):
 def clone_and_merge_timed(workdir, repo_configs, lastest_before):
     for config_name, repo_config in repo_configs.items():
         ghrepo = GitHubRepo(workdir, config_name, repo_config['origin']['org'], repo_config['origin']['repo_name'])
-        ghrepo.fetch(dest='origin', branch_name=repo_configs['origin']['branch'])
+        ghrepo.fetch(dest='origin', branch_name=repo_config['origin']['branch'])
         if not ghrepo.is_dirty():
             ghrepo.add_remote(
                 remote_url=(f'git@github.com:{repo_config["upstream"]["org"]}/'
