@@ -155,7 +155,7 @@ class GitHubRepo:
             if len(tag) == 1:
                 checkout_name = expected_tag_name
 
-        matched_branch = [branch.name for branch in self.repo.branches]
+        matched_branch = [branch.name for branch in self.repo.branches if branch.name == new_branch_name]
         if len(matched_branch) > 0:
             self.repo.git.checkout(new_branch_name)
         elif checkout_name is not None:
