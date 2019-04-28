@@ -38,6 +38,9 @@ pipeline {
     stages {
         stage ('SCM'){
             steps {
+                script {
+                    currentBuild.displayName = "#${currentBuild.id} ${CN_REPO}"
+                }
                 cleanWs()
                 checkout([
                         $class: 'GitSCM',
@@ -77,7 +80,7 @@ pipeline {
     post {
         success {
             sh """
-            SLACK_MSG='Build <${BUILD_URL}|${BUILD_DISPLAY_NAME}> `${CN_REPO}` ok. :sunflower:'
+            SLACK_MSG='Build <${BUILD_URL}|#${BUILD_ID}> `${CN_REPO}` ok. :sunflower:'
             SLACK_URL='https://hooks.slack.com/services/${SLACK_TOKEN}/${SLACK_SECRET_TOKEN}/${SLACK_SECRET_ID}'
             SLACK_PAYLOAD='payload={\"channel\": \"#cn-rebase\", \"username\": \"CICD\", \"text\": \"'\${SLACK_MSG}'\", \"icon_emoji\": \":tradeshift:\"}'
             curl -X POST --data-urlencode \"\${SLACK_PAYLOAD}\" \"\${SLACK_URL}\"
@@ -85,7 +88,7 @@ pipeline {
         }
         failure {
             sh """
-            SLACK_MSG='Build <${BUILD_URL}|${BUILD_DISPLAY_NAME}> `${CN_REPO}` fail! :upside_down_face:'
+            SLACK_MSG='Build <${BUILD_URL}|#${BUILD_ID}> `${CN_REPO}` fail! :upside_down_face:'
             SLACK_URL='https://hooks.slack.com/services/${SLACK_TOKEN}/${SLACK_SECRET_TOKEN}/${SLACK_SECRET_ID}'
             SLACK_PAYLOAD='payload={\"channel\": \"#cn-rebase\", \"username\": \"CICD\", \"text\": \"'\${SLACK_MSG}'\", \"icon_emoji\": \":tradeshift:\"}'
             curl -X POST --data-urlencode \"\${SLACK_PAYLOAD}\" \"\${SLACK_URL}\"
