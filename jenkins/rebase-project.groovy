@@ -1,5 +1,5 @@
 /*
-1. checkout rebase branch <br>
+1. checkout TARGET_BRANCH branch <br>
 2. merge CN_REFS <br>
 3. merge TS_REFS <br>
 4. tag the commit with format YYYY-MM-DD <br>
@@ -22,6 +22,7 @@ pipeline {
         SLACK_SECRET_TOKEN = credentials 'SLACK_SECRET_TOKEN'
     }
     parameters {
+        string(name: 'TARGET_BRANCH', defaultValue: 'rebase', description: 'Rebase target branch')
         string(name: 'CN_REPO', description: 'TradeshiftCN repository')
         string(name: 'CN_REFS', defaultValue: 'cn/dev-stable', description: 'git refs')
         string(name: 'TS_REPO', description: 'Tradeshift repository')
@@ -30,9 +31,13 @@ pipeline {
     triggers {
         parameterizedCron('''
             H 0 * * * %CN_REPO=Integration-Test;TS_REPO=Integration-Test
+            H 0 * * * %CN_REPO=common-ui-apps;TS_REPO=common-ui-apps
             H 0 * * * %CN_REPO=companies-onboarding;TS_REPO=companies-onboarding
             H 0 * * * %CN_REPO=event-app-handler;TS_REPO=event-app-handler
             H 0 * * * %CN_REPO=orgs;TS_REPO=orgs
+            H 0 * * * %CN_REPO=task-manager;TS_REPO=task-manager
+            H 0 * * * %CN_REPO=tradeshift-approval-service;TS_REPO=tradeshift-approval-service
+            H 0 * * * %CN_REPO=tradeshift-clamav;TS_REPO=tradeshift-clamav
             ''')
     }
     stages {
@@ -60,18 +65,19 @@ pipeline {
                     export GIT_COMMITTER_EMAIL=jenkins.cn@tradeshift.com
                     export GIT_COMMITTER_NAME=cntsjenkins
                     export GIT_AUTHOR_NAME=cntsjenkins
+                    export GIT_AUTHOR_EMAIL=jenkins.cn@tradeshift.com
 
                     set -e
                     git reset --hard
-                    git checkout -B rebase cn/rebase || git checkout -B rebase ${CN_REFS}
+                    git checkout -B ${TARGET_BRANCH} cn/${TARGET_BRANCH} || git checkout -B ${TARGET_BRANCH} ${CN_REFS}
 
                     git merge ${CN_REFS}
                     git merge ${TS_REFS}
 
-                    tag=rebase-`date '+%Y-%m-%d'`
+                    tag=${TARGET_BRANCH}-`date '+%Y-%m-%d'`
 
                     git tag -f ${tag}
-                    git push cn HEAD:refs/heads/rebase
+                    git push cn HEAD:refs/heads/${TARGET_BRANCH}
                     git push -f cn HEAD:refs/tags/${tag}
                 '''
             }
