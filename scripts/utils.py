@@ -165,9 +165,12 @@ class GitHubRepo:
         else:
             raise Exception(f'{base_commit_or_tag} not exist in {self.org_name}/{self.repo_name}')
 
-    def merge_without_commit(self, new_branch):
+    def merge_and_push_to(self, new_branch,branch_name_to_push):
         try:
             self.repo.git.merge(new_branch)
+            self.repo.remotes['origin'].push(
+                refspec=f'{branch_name_to_push}:refs/heads/{branch_name_to_push}',
+                progress=Progress(), f=True)
         except GitCommandError as err:
             if 'Automatic merge failed' in err.stdout:
                 self.LOGGER.error(f'Conflicts are seen in {self.org_name}/{self.repo_name} when merging {new_branch}')
@@ -175,6 +178,7 @@ class GitHubRepo:
                     self.LOGGER.error(err_line)
             else:
                 self.LOGGER.error(err)
+            raise err
 
     def clone(self):
         try:
