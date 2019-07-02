@@ -17,6 +17,9 @@ logging.basicConfig(level=logging.INFO,
 
 # =========================== Modify Following ===========================
 
+# Create your private token here https://github.com/settings/tokens
+GITHUB_TOKEN = 'token'
+
 # Example: os.path.expanduser('~/TradeshiftCN/rebase/')
 WORKING_DIR = 'change this'
 
@@ -210,18 +213,6 @@ K8S_REPOS = {
             'branch': 'master'
         }
     },
-    'event-app-handler': {
-        'origin': {
-            'org': 'TradeshiftCN',
-            'repo_name': 'event-app-handler',
-            'branch': 'dev-stable'
-        },
-        'upstream': {
-            'org': 'Tradeshift',
-            'repo_name': 'event-app-handler',
-            'branch': 'master'
-        }
-    },
     'tradeshift-clamav': {
         'origin': {
             'org': 'TradeshiftCN',
@@ -234,15 +225,27 @@ K8S_REPOS = {
             'branch': 'master'
         }
     },
-    'common-ui-apps': {
+    'tradeshift-approval-service': {
         'origin': {
             'org': 'TradeshiftCN',
-            'repo_name': 'common-ui-apps',
+            'repo_name': 'tradeshift-approval-service',
             'branch': 'dev-stable'
         },
         'upstream': {
             'org': 'Tradeshift',
-            'repo_name': 'common-ui-apps',
+            'repo_name': 'tradeshift-approval-service',
+            'branch': 'master'
+        }
+    },
+    'task-manager': {
+        'origin': {
+            'org': 'TradeshiftCN',
+            'repo_name': 'task-manager',
+            'branch': 'dev-stable'
+        },
+        'upstream': {
+            'org': 'Tradeshift',
+            'repo_name': 'task-manager',
             'branch': 'master'
         }
     }
