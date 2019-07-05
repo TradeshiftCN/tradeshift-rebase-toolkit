@@ -13,6 +13,7 @@ Sub-task  ,        ,1        ,rebase business-analytics         ,lry     ,huy   
 Sub-task  ,        ,1        ,rebase business-analytics-etl     ,lry     ,huy     ,Medium  ,Open  ,Migrate TradeshiftCN to Tradeshift,CPA-8                   ,1
 Sub-task  ,        ,1        ,rebase business-analytics-etl-b   ,lry     ,huy     ,Medium  ,Open  ,Migrate TradeshiftCN to Tradeshift,CPA-8                   ,1
 Sub-task  ,        ,1        ,rebase clamav                     ,lry     ,huy     ,Medium  ,Open  ,Migrate TradeshiftCN to Tradeshift,CPA-8                   ,1
+Sub-task  ,        ,1        ,rebase cloudscan                  ,lry     ,huy     ,Medium  ,Open  ,Migrate TradeshiftCN to Tradeshift,CPA-8                   ,1
 Sub-task  ,        ,1        ,rebase event-app-handler          ,cay     ,huy     ,Medium  ,Open  ,Migrate TradeshiftCN to Tradeshift,CPA-8                   ,1
 Sub-task  ,        ,1        ,rebase orgs                       ,cyh     ,huy     ,Medium  ,Open  ,Migrate TradeshiftCN to Tradeshift,CPA-8                   ,1
 Sub-task  ,        ,1        ,rebase common-ui-apps             ,cyh     ,huy     ,Medium  ,Open  ,Migrate TradeshiftCN to Tradeshift,CPA-8                   ,1
@@ -36,6 +37,7 @@ Sub-task  ,        ,2        ,rebase business-analytics         ,lry     ,huy   
 Sub-task  ,        ,2        ,rebase business-analytics-etl     ,lry     ,huy     ,Medium  ,Open  ,Migrate TradeshiftCN to Tradeshift,CPA-8                   ,1
 Sub-task  ,        ,2        ,rebase business-analytics-etl-b   ,lry     ,huy     ,Medium  ,Open  ,Migrate TradeshiftCN to Tradeshift,CPA-8                   ,1
 Sub-task  ,        ,2        ,rebase clamav                     ,lry     ,huy     ,Medium  ,Open  ,Migrate TradeshiftCN to Tradeshift,CPA-8                   ,1
+Sub-task  ,        ,2        ,rebase cloudscan                  ,lry     ,huy     ,Medium  ,Open  ,Migrate TradeshiftCN to Tradeshift,CPA-8                   ,1
 Sub-task  ,        ,2        ,rebase event-app-handler          ,cay     ,huy     ,Medium  ,Open  ,Migrate TradeshiftCN to Tradeshift,CPA-8                   ,1
 Sub-task  ,        ,2        ,rebase orgs                       ,cyh     ,huy     ,Medium  ,Open  ,Migrate TradeshiftCN to Tradeshift,CPA-8                   ,1
 Sub-task  ,        ,2        ,rebase common-ui-apps             ,cyh     ,huy     ,Medium  ,Open  ,Migrate TradeshiftCN to Tradeshift,CPA-8                   ,1

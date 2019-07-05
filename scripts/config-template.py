@@ -248,6 +248,18 @@ K8S_REPOS = {
             'repo_name': 'task-manager',
             'branch': 'master'
         }
+    },
+    'cloudscan-service': {
+        'origin': {
+            'org': 'TradeshiftCN',
+            'repo_name': 'cloudscan-service',
+            'branch': 'dev-stable'
+        },
+        'upstream': {
+            'org': 'Tradeshift',
+            'repo_name': 'task-manager',
+            'branch': 'master'
+        }
     }
 }
 
