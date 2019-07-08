@@ -15,7 +15,7 @@ conda activate rebase-toolkit
 ## 或原生 Python 3
 需要安装以下依赖：
 ```bash
-pip3 install pyyaml coloredlogs tqdm GitPython
+pip3 install pyyaml coloredlogs tqdm GitPython PyGithub
 ```
 
 # 运行

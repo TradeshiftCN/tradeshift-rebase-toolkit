@@ -131,7 +131,8 @@ HERACLE_REPOS = {
         'origin': {
             'org': 'TradeshiftCN',
             'repo_name': 'business-analytics',
-            'branch': 'dev-stable-business-analytics-etl'
+            'branch': 'dev-stable-business-analytics-etl',
+            'branch_suffix': '-etl'
         },
         'upstream': {
             'org': 'Tradeshift',
@@ -143,7 +144,8 @@ HERACLE_REPOS = {
         'origin': {
             'org': 'TradeshiftCN',
             'repo_name': 'business-analytics',
-            'branch': 'dev-stable-business-analytics-etl-b'
+            'branch': 'dev-stable-business-analytics-etl-b',
+            'branch_suffix': '-etl-b'
         },
         'upstream': {
             'org': 'Tradeshift',
@@ -257,7 +259,7 @@ K8S_REPOS = {
         },
         'upstream': {
             'org': 'Tradeshift',
-            'repo_name': 'task-manager',
+            'repo_name': 'cloudscan-service',
             'branch': 'master'
         }
     }
