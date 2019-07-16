@@ -110,7 +110,7 @@ def clone_and_merge_timed(workdir, repo_configs, lastest_before):
                 except GithubException as ge:
                     if 'No commits between' in ge.data['errors'][0]['message']:
                         LOGGER.info(
-                            f"No change between {repo_config['origin']['branch']} and {REBASE_BRANCH_NAME}, "
+                            f"No change between {repo_config['origin']['branch']} and {config.REBASE_BRANCH_NAME}, "
                             f"No PR is created on {repo_config['origin']['repo_name']}.")
                     else:
                         LOGGER.error(f"Creating PR on {repo_config['origin']['repo_name']} failed.", ge)
