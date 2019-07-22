@@ -62,17 +62,19 @@ def clone_and_merge_versioned(workdir, repo_configs, version_dict):
         try:
             REBASE_BRANCH_NAME = config.REBASE_BRANCH_NAME + repo_config["origin"]["branch_suffix"]
         except:
-            REBASE_BRANCH_NAME = config.REBASE_BRANCH_NAME 
+            REBASE_BRANCH_NAME = config.REBASE_BRANCH_NAME
 
         ghrepo.fetch(dest='upstream')
         ghrepo.checkout_new_branch(commit_or_tag, REBASE_BRANCH_NAME)
         try:
             ghrepo.merge_and_push_to(f"origin/{repo_config['origin']['branch']}", REBASE_BRANCH_NAME)
             ts_repo = tscn.get_repo(repo_config['origin']['repo_name'])
-            ts_repo.create_pull(title=REBASE_BRANCH_NAME,
-                                body='',
-                                base=repo_config['origin']['branch'],
-                                head=REBASE_BRANCH_NAME)
+            pr = ts_repo.create_pull(title=REBASE_BRANCH_NAME,
+                                     body='',
+                                     base=repo_config['origin']['branch'],
+                                     head=REBASE_BRANCH_NAME)
+            pr.add_to_labels("REBASE")
+            LOGGER.info(f"Created PR on {pr.html_url}")
         except GitCommandError as gce:
             LOGGER.warning('Merge failed, you need to look into it.', gce)
         except GithubException as ge:
@@ -101,15 +103,17 @@ def clone_and_merge_timed(workdir, repo_configs, lastest_before):
                 try:
                     ghrepo.merge_and_push_to(f"origin/{repo_config['origin']['branch']}", config.REBASE_BRANCH_NAME)
                     ts_repo = tscn.get_repo(repo_config['origin']['repo_name'])
-                    ts_repo.create_pull(title=config.REBASE_BRANCH_NAME,
-                                        body='',
-                                        base=repo_config['origin']['branch'],
-                                        head=config.REBASE_BRANCH_NAME)
+                    pr = ts_repo.create_pull(title=config.REBASE_BRANCH_NAME,
+                                             body='',
+                                             base=repo_config['origin']['branch'],
+                                             head=config.REBASE_BRANCH_NAME)
+                    pr.add_to_labels("REBASE")
+                    LOGGER.info(f"Created PR on {pr.html_url}")
                 except GitCommandError as gce:
                     LOGGER.warning('Merge failed, you need to look into it.', gce)
                 except GithubException as ge:
                     if 'No commits between' in ge.data['errors'][0]['message']:
-                        LOGGER.info(
+                        LOGGER.warning(
                             f"No change between {repo_config['origin']['branch']} and {config.REBASE_BRANCH_NAME}, "
                             f"No PR is created on {repo_config['origin']['repo_name']}.")
                     else:

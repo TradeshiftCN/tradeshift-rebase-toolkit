@@ -79,9 +79,6 @@ celerybeat-schedule
 # SageMath parsed files
 *.sage.py
 
-# dotenv
-.env
-
 # virtualenv
 .venv
 venv/
@@ -107,3 +104,6 @@ user
 
 # Personal configuration
 scripts/config.py
+
+# VS Code
+.vscode
